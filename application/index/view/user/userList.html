@@ -1,0 +1,50 @@
+{include file="common/header" /}
+<div class="panel panel-default mt-20">
+    <div class="panel-heading">用户管理</div>
+    <div class="panel-body">
+        <p>使用php开发，mysql数据库操作
+            <a class="btn btn-default" href="addUser.html" role="button">添加用户</a></p>
+    </div>
+    <!-- Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>用户名</th>
+                <th>性别</th>
+                <th>电子邮箱</th>
+                <th>注册时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name="list" id="item" empty="$empty"}
+            <tr>
+                <th scope="row">{$pageNow*2+$key+1}</th>
+                <td>{$item.username}</td>
+                {switch name=$item['sex']}
+                {case value="0"}<td>女</td>{/case}
+                {case value="1"}<td>男</td>{/case}
+                {case value="2"}<td>保密</td>{/case}
+                {/switch}
+                <td>{$item.email}</td>
+                <td>{$item.regTime}</td>
+                <td>
+                    <a class="btn btn-default" href="editUser.html?id={$item.id}" role="button">编辑</a>
+                    <a class="btn btn-default" href="delUser.html?id={$item.id}" role="button">删除</a>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+        {$navigate}
+    </div>
+</div>
+<script>
+    var a = $(".nav-sidebar").find("li").eq(6);
+    a.addClass("active");
+    a.parent().parent().find(".glyphicon-menu-down").toggleClass("glyphicon-menu-up");
+    a.parent().parent().find(".nav").toggleClass("noblock");
+</script>
+{include file="common/footer" /}

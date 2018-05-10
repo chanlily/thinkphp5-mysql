@@ -1,0 +1,43 @@
+{include file="common/header" /}
+<div class="panel panel-default mt-20">
+    <div class="panel-heading">后台角色管理</div>
+    <div class="panel-body">
+        <p>使用php开发，mysql数据库操作
+            <a class="btn btn-default" href="addAdmin.html" role="button">添加管理员</a>
+        </p>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>用户名</th>
+                <th>管理员级别</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name="list" id="vo" empty="$empty"}
+            <tr>
+                <th scope="row">{$key+1}</th>
+                <td>{$vo.username}</td>
+                <td>{$vo.isadmin}</td>
+                <td>
+                    <a class="btn btn-default" href="editAdmin.html?id={$vo.id}" role="button">编辑</a>
+                    <a class="btn btn-default" href="delAdmin.html?id={$vo.id}" role="button">删除</a>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    var a = $(".nav-sidebar").find("li").eq(7);
+    a.addClass("active");
+    a.parent().parent().find(".glyphicon-menu-down").toggleClass("glyphicon-menu-up");
+    a.parent().parent().find(".nav").toggleClass("noblock");
+</script>
+{include file="common/footer" /}

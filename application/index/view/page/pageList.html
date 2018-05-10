@@ -1,0 +1,52 @@
+{include file="common/header" /}
+<div class="panel panel-default mt-20">
+    <div class="panel-heading">文章列表管理</div>
+    <div class="panel-body">
+        <p>使用php开发，mysql数据库操作
+            <a class="btn btn-default" href="addPage.html" role="button">添加文章</a></p>
+    </div>
+    <!-- Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>文章名称</th>
+                <th>作者</th>
+                <th>分类</th>
+                <th>简介</th>
+                <th>浏览次数</th>
+                <th>更新时间</th>
+                <th>图片</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name="list" id="item" empty="$empty"}
+            <tr>
+                <th scope="row">{$pageNow*5+$key+1}</th>
+                <td>{$item.pageName}</td>
+                <td>{$item.author}</td>
+                <td>{$item.cName}</td>
+                <td>{$item.intro}</td>
+                <td>{$item.pageView}</td>
+                <td>{$item.pageUpTime}</td>
+                <td><img src="__ROOT__/upload/{$item.image}" style="height:50px;"></td>
+                <td>
+                    <a class="btn btn-default" href="editPage.html?id={$item.id}" role="button">编辑</a>
+                    <a class="btn btn-default" href="delPage.html?id={$item.id}" role="button">删除</a>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+        {$navigate}
+    </div>
+</div>
+<script>
+    var a = $(".nav-sidebar").find("li").eq(4);
+    a.addClass("active");
+    a.parent().parent().find(".glyphicon-menu-down").toggleClass("glyphicon-menu-up");
+    a.parent().parent().find(".nav").toggleClass("noblock");
+</script>
+{include file="common/footer" /}

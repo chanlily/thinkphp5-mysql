@@ -1,0 +1,41 @@
+{include file="common/header" /}
+<div class="panel panel-default mt-20">
+    <div class="panel-heading">文章分类管理</div>
+    <div class="panel-body">
+        <p>使用php开发，mysql数据库操作
+            <a class="btn btn-default" href="addCate.html" role="button">添加分类</a>
+        </p>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>分类名</th>
+                <th>排序</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name="list" id="item" empty=$empty}
+            <tr>
+                <th scope="row">{$key+1}</th>
+                <td>{$item.cName}</td>
+                <td>{$item.sort}</td>
+                <td>
+                    <a class="btn btn-default" href="editCate.html?id={$item.id}" role="button">编辑</a>
+                    <a class="btn btn-default" href="delCate.html?id={$item.id}" role="button">删除</a>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    var a = $(".nav-sidebar").find("li").eq(8);
+    a.addClass("active");
+</script>
+{include file="common/footer" /}
